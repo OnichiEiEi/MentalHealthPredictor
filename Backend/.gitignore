@@ -10,10 +10,6 @@ venv/
 env/
 ENV/
 
-# Model files
-*.pkl
-*.joblib
-
 # Environment variables
 .env
 
