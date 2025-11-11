@@ -4,8 +4,8 @@ function MentalHealthForm() {
   const [formData, setFormData] = useState({
     age: "",
     screen_time_hours: "",
-    sleep_quality_1_5: "",
     stress_level_0_10: "",
+    sleep_quality_1_5: "",
     sleep_hours: "",
   });
 
@@ -20,7 +20,11 @@ function MentalHealthForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const data = await response.json();
 
+    // Clamp result between 0 and 100, then round to integer
+    const clamped = Math.max(0, Math.min(100, data.predicted_mental_health_score));
+    setResult(Math.round(clamped));
     const payload = {
       screen_time_hours: parseFloat(formData.screen_time_hours),
       sleep_quality_1_5: parseFloat(formData.sleep_quality_1_5),
