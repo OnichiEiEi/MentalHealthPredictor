@@ -30,14 +30,12 @@ function MentalHealthForm() {
     };
 
     try {
-      const apiUrl = import.meta.env.VITE_API_URL;
-      const response = await fetch(`${apiUrl}/predict`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/predict`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
       });
+
 
       const data = await response.json();
       setResult(data.predicted_mental_health_score);
