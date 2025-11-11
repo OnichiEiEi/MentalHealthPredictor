@@ -3,10 +3,17 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import joblib
 import pandas as pd
+from dotenv import load_dotenv
+import os
 
-# Load trained model and feature names
-model = joblib.load("Linear Regression_best_model.pkl")
-feature_names = joblib.load("feature_names.pkl")
+load_dotenv()
+
+model_path = os.getenv("MODEL_PATH")
+features_path = os.getenv("FEATURES_PATH")
+
+model = joblib.load(model_path)
+feature_names = joblib.load(features_path)
+
 
 # Initialize FastAPI app
 app = FastAPI(title="Mental Health Predictor API")
