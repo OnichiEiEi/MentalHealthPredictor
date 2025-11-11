@@ -1,6 +1,10 @@
 import Home from "./Home";
 import About from "./About";
 import Footer from "../components/Footer";
+import Explain from "../components/Explain";
+import Hero from "../components/Hero";
+import ContactForm from "../components/ContactForm";
+
 import { useLocation, useNavigate } from "react-router-dom";
 import { Link as ScrollLink, Element as ScrollElement,scroller } from "react-scroll";
 import { useEffect } from "react";
@@ -28,9 +32,12 @@ export default function LandingPage() {
             <ScrollElement name="home">
               <Home />
             </ScrollElement>
+            <Explain />
+            <Hero />
             <ScrollElement name="about">
               <About />
             </ScrollElement>
+            <ContactForm />
             <ScrollElement name="contact">
               <Footer/>
             </ScrollElement>

@@ -10,6 +10,7 @@ function MentalHealthForm() {
   });
 
   const [result, setResult] = useState(null);
+  const [showStressTable, setShowStressTable] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
@@ -44,6 +45,28 @@ function MentalHealthForm() {
     }
   };
 
+  const getMentalHealthLabel = (score) => {
+    if (score >= 0 && score <= 20) return { label: "ภาวะเครียด", detail: "อาจมีภาวะซึมเศร้าหรือความเครียดสูง มีแนวโน้มต้องการความช่วยเหลือจากผู้เชี่ยวชาญ", color: "text-red-500" };
+    if (score <= 40) return { label: "สุขภาพจิตต่ำ", detail: "มีอาการเครียด วิตกกังวล หรือหมดแรงจูงใจบ้าง ควรได้รับการดูแลหรือพักผ่อน", color: "text-orange-500" };
+    if (score <= 60) return { label: "สุขภาพจิตปานกลาง", detail: "อยู่ในระดับปกติ อาจมีอารมณ์ขึ้นลงตามสถานการณ์ ควรดูแลตนเองอย่างต่อเนื่อง", color: "text-yellow-500" };
+    if (score <= 80) return { label: "สุขภาพจิตดี", detail: "มีความมั่นคงทางอารมณ์ รับมือกับความเครียดได้ดี มีความสุขในชีวิตประจำวัน", color: "text-green-500" };
+    return { label: "สุขภาพจิตดีเยี่ยม", detail: "มีความยืดหยุ่นทางจิตใจสูง อารมณ์มั่นคง มองโลกในแง่ดี และมีพลังบวก", color: "text-teal-600" };
+  };
+
+  const stressLevels = [
+    "ไม่มีความเครียดเลย (No Stress)",
+    "ผ่อนคลายแต่เริ่มมีสิ่งรบกวนเล็กน้อย (Barely Noticeable Stress)",
+    "ความเครียดต่ำมาก (Very Low Stress)",
+    "ความเครียดเล็กน้อย (Mild Stress)",
+    "ความเครียดค่อนข้างต่ำ (Low-Moderate Stress)",
+    "ความเครียดปานกลาง (Moderate Stress)",
+    "ความเครียดปานกลางค่อนไปสูง (Moderately High Stress)",
+    "ความเครียดสูง (High Stress)",
+    "ความเครียดรุนแรง (Very High Stress)",
+    "ความเครียดเฉียบพลัน (Severe Stress)",
+    "ความเครียดขั้นวิกฤติ (Extreme / Crisis Level Stress)"
+  ];
+
   return (
     <div className="max-w-md w-full mx-auto bg-white rounded-2xl border border-gray-200 shadow-md p-6">
       <h2 className="text-xl font-bold text-center text-gray-700 mb-4">
@@ -76,8 +99,38 @@ function MentalHealthForm() {
               max={field.max}
               className="px-3 py-2 rounded-lg border border-gray-300 focus:border-teal-500 focus:ring-1 focus:ring-teal-400 outline-none transition-all"
             />
+            {field.name === "stress_level_0_10" && (
+              <button
+                type="button"
+                onClick={() => setShowStressTable(!showStressTable)}
+                className="mt-2 text-sm text-teal-600 hover:underline self-start"
+              >
+                {showStressTable ? "Hide Stress Table" : "View Stress Table"}
+              </button>
+            )}
           </div>
         ))}
+
+        {showStressTable && (
+          <div className="mt-2 border border-gray-200 rounded-lg overflow-hidden">
+            <table className="w-full text-sm text-left text-gray-700">
+              <thead className="bg-gray-100 text-gray-600 font-medium">
+                <tr>
+                  <th className="px-3 py-2 border-r">ระดับ</th>
+                  <th className="px-3 py-2">คำอธิบาย</th>
+                </tr>
+              </thead>
+              <tbody>
+                {stressLevels.map((desc, index) => (
+                  <tr key={index} className="border-t">
+                    <td className="px-3 py-2 border-r font-semibold">{index}</td>
+                    <td className="px-3 py-2">{desc}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
 
         <button
           type="submit"
@@ -92,9 +145,19 @@ function MentalHealthForm() {
           <p className="text-gray-700 font-medium">
             Predicted Mental Health Score:
           </p>
-          <p className="text-2xl font-bold text-teal-600">
-            {typeof result === "number" ? `${result}` : result}
-          </p>
+          {typeof result === "number" ? (
+            <>
+              <p className="text-2xl font-bold text-teal-600">{result}</p>
+              <p className={`text-sm mt-2 font-medium ${getMentalHealthLabel(result).color}`}>
+                {getMentalHealthLabel(result).label}
+              </p>
+              <p className="text-sm mt-2 font-light">
+                {getMentalHealthLabel(result).detail}
+              </p>
+            </>
+          ) : (
+            <p className="text-red-600 font-medium">{result}</p>
+          )}
         </div>
       )}
     </div>
