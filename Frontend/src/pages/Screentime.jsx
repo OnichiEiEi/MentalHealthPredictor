@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 import MentalHealthForm from "../components/MentalHealthForm";
 export default function ScreenTime() {
   return (
-    <div>
+    <div className="p-8">
         <MentalHealthForm/>
     </div>
   );

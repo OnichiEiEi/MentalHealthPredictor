@@ -2,11 +2,11 @@ import React, { useState } from "react";
 
 function MentalHealthForm() {
   const [formData, setFormData] = useState({
+    age: "",
     screen_time_hours: "",
     sleep_quality_1_5: "",
     stress_level_0_10: "",
     sleep_hours: "",
-    age: ""
   });
 
   const [result, setResult] = useState(null);
@@ -51,11 +51,11 @@ function MentalHealthForm() {
 
       <form onSubmit={handleSubmit} className="space-y-4">
         {[
-          { name: "screen_time_hours", label: "Screen Time (hrs)" },
-          { name: "sleep_quality_1_5", label: "Sleep Quality (1–5)" },
-          { name: "stress_level_0_10", label: "Stress Level (0–10)" },
-          { name: "sleep_hours", label: "Sleep Hours" },
-          { name: "age", label: "Age" }
+          { name: "age", label: "Age" },
+          { name: "screen_time_hours", label: "Screen Time (hrs)",min:0,max:24 },
+          { name: "sleep_quality_1_5", label: "Sleep Quality (1–5)", min:1,max:5},
+          { name: "stress_level_0_10", label: "Stress Level (0–10)",min:0,max:10 },
+          { name: "sleep_hours", label: "Sleep Hours",min:0,max:24 },
         ].map((field) => (
           <div key={field.name} className="flex flex-col">
             <label
@@ -71,6 +71,8 @@ function MentalHealthForm() {
               value={formData[field.name]}
               onChange={handleChange}
               required
+              min={field.min}
+              max={field.max}
               className="px-3 py-2 rounded-lg border border-gray-300 focus:border-teal-500 focus:ring-1 focus:ring-teal-400 outline-none transition-all"
             />
           </div>
