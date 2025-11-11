@@ -81,7 +81,7 @@ function MentalHealthForm() {
 
         <button
           type="submit"
-          className="w-full mt-2 py-2.5 bg-gradient-to-r from-teal-500 to-blue-500 text-white font-semibold rounded-lg shadow hover:shadow-lg hover:scale-[1.02] transition-transform"
+          className="w-full mt-2 py-2.5 bg-linear-to-r from-teal-500 to-blue-500 text-white font-semibold rounded-lg shadow hover:shadow-lg hover:scale-[1.02] transition-transform"
         >
           Predict
         </button>
