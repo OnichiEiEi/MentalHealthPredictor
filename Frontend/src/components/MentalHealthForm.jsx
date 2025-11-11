@@ -20,11 +20,7 @@ function MentalHealthForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const data = await response.json();
 
-    // Clamp result between 0 and 100, then round to integer
-    const clamped = Math.max(0, Math.min(100, data.predicted_mental_health_score));
-    setResult(Math.round(clamped));
     const payload = {
       screen_time_hours: parseFloat(formData.screen_time_hours),
       sleep_quality_1_5: parseFloat(formData.sleep_quality_1_5),
@@ -40,9 +36,9 @@ function MentalHealthForm() {
         body: JSON.stringify(payload)
       });
 
-
       const data = await response.json();
-      setResult(data.predicted_mental_health_score);
+      const clamped = Math.max(0, Math.min(100, data.predicted_mental_health_score));
+      setResult(Math.round(clamped));
     } catch (error) {
       setResult("Error: Unable to connect to API.");
     }
@@ -57,10 +53,10 @@ function MentalHealthForm() {
       <form onSubmit={handleSubmit} className="space-y-4">
         {[
           { name: "age", label: "Age" },
-          { name: "screen_time_hours", label: "Screen Time (hrs)",min:0,max:24 },
-          { name: "sleep_quality_1_5", label: "Sleep Quality (1–5)", min:1,max:5},
-          { name: "stress_level_0_10", label: "Stress Level (0–10)",min:0,max:10 },
-          { name: "sleep_hours", label: "Sleep Hours",min:0,max:24 },
+          { name: "screen_time_hours", label: "Screen Time (hrs)", min: 0, max: 24 },
+          { name: "sleep_quality_1_5", label: "Sleep Quality (1–5)", min: 1, max: 5 },
+          { name: "stress_level_0_10", label: "Stress Level (0–10)", min: 0, max: 10 },
+          { name: "sleep_hours", label: "Sleep Hours", min: 0, max: 24 },
         ].map((field) => (
           <div key={field.name} className="flex flex-col">
             <label
@@ -85,7 +81,7 @@ function MentalHealthForm() {
 
         <button
           type="submit"
-          className="w-full mt-2 py-2.5 bg-linear-to-r from-teal-500 to-blue-500 text-white font-semibold rounded-lg shadow hover:shadow-lg hover:scale-[1.02] transition-transform"
+          className="w-full mt-2 py-2.5 bg-gradient-to-r from-teal-500 to-blue-500 text-white font-semibold rounded-lg shadow hover:shadow-lg hover:scale-[1.02] transition-transform"
         >
           Predict
         </button>
@@ -96,7 +92,9 @@ function MentalHealthForm() {
           <p className="text-gray-700 font-medium">
             Predicted Mental Health Score:
           </p>
-          <p className="text-2xl font-bold text-teal-600">{result}</p>
+          <p className="text-2xl font-bold text-teal-600">
+            {typeof result === "number" ? `${result}` : result}
+          </p>
         </div>
       )}
     </div>

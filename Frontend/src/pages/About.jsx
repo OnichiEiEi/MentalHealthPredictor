@@ -12,7 +12,7 @@ export default function About(){
             </ul>
             <div className="flex flex-col lg:flex-row h-full">
                 <a className="group relative block w-100 h-100 bg-black">
-                    <img src={ken} class="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50"/>
+                    <img src={ken} className="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50"/>
                     <div className="relative p-4 sm:p-6 lg:p-8">
                         <p className="text-sm font-medium tracking-widest text-pink-500 uppercase">Developer</p>
                         <p className="text-xl font-bold text-white sm:text-2xl">Wasutorn Tasee</p>
@@ -26,7 +26,7 @@ export default function About(){
                     </div>
                 </a>
                 <a className="group relative block w-100 h-100 bg-black">
-                    <img src={spy} class="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50"/>
+                    <img src={spy} className="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50"/>
                     <div className="relative p-4 sm:p-6 lg:p-8">
                         <p className="text-sm font-medium tracking-widest text-pink-500 uppercase">Developer</p>
                         <p className="text-xl font-bold text-white sm:text-2xl">Nattapat Chearauttasak</p>
@@ -40,7 +40,7 @@ export default function About(){
                     </div>
                 </a>
                 <a className="group relative block w-100 h-100 bg-black">
-                    <img src={non} class="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50"/>
+                    <img src={non} className="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50"/>
                     <div className="relative p-4 sm:p-6 lg:p-8">
                         <p className="text-sm font-medium tracking-widest text-pink-500 uppercase">Developer</p>
                         <p className="text-xl font-bold text-white sm:text-2xl">Phonkiat Robkob</p>
@@ -54,7 +54,7 @@ export default function About(){
                     </div>
                 </a>
                 <a className="group relative block w-100 h-100 bg-black">
-                    <img src={ken} class="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50"/>
+                    <img src={ken} className="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50"/>
                     <div className="relative p-4 sm:p-6 lg:p-8">
                         <p className="text-sm font-medium tracking-widest text-pink-500 uppercase">Developer</p>
                         <p className="text-xl font-bold text-white sm:text-2xl">Sinlaphachai Homhual</p>
@@ -68,7 +68,7 @@ export default function About(){
                     </div>
                 </a>
                 <a className="group relative block w-100 h-100 bg-black">
-                    <img src={ken} class="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50"/>
+                    <img src={ken} className="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50"/>
                     <div className="relative p-4 sm:p-6 lg:p-8">
                         <p className="text-sm font-medium tracking-widest text-pink-500 uppercase">Developer</p>
                         <p className="text-xl font-bold text-white sm:text-2xl">Nontawad Saetan</p>
